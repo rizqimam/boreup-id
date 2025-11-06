@@ -3,8 +3,10 @@
   background: #f4f4f4;
   min-height: 100vh;
   padding-bottom: 2rem;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* HEADER */
 header {
   background: #1e3c72;
   color: white;
@@ -18,15 +20,24 @@ header {
 header h1 {
   font-size: 1.3rem;
   font-weight: 600;
+  margin: 0;
 }
 .btn-keluar {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+.btn-keluar:hover {
+  background: #b02a37;
+}
+.btn-keluar:focus {
+  outline: 2px solid #ffc107;
+  outline-offset: 2px;
 }
 
 /* GRID KALKULATOR - MOBILE FIRST */
@@ -35,8 +46,8 @@ header h1 {
   grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1.5rem 1rem;
-  max-width: 100%;
-  overflow-x: hidden;
+  max-width: 1200px;   /* batas lebar di desktop */
+  margin: 0 auto;      /* biar grid selalu center */
 }
 
 /* KARTU KALKULATOR */
@@ -48,7 +59,7 @@ header h1 {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 100px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,7 +96,7 @@ header h1 {
     gap: 1.5rem;
     padding: 2rem;
   }
-  header h1 { font-size: 1.5rem; }
+  header h1 { font-size: 1.6rem; }
   .kalkulator-card {
     padding: 1.5rem;
   }
