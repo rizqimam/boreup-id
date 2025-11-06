@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - BoreUp.ID</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard">
+  <header>
+    <h1>Kalkulator Mesin</h1>
+    <button onclick="keluar()" class="btn-keluar">KELUAR</button>
+  </header>
+
+  <main class="kalkulator-grid" id="kalkulatorList">
+    <!-- Kalkulator akan diisi oleh JS -->
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    function keluar() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
