@@ -13,10 +13,12 @@ body.login-page {
   animation: racingGradient 8s ease infinite;
   color: #fff;
   min-height: 100vh;
+  min-height: 100dvh; /* Untuk mobile browser */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  overflow-x: hidden; /* Mencegah scroll horizontal */
 }
 
 @keyframes racingGradient {
@@ -28,40 +30,45 @@ body.login-page {
 .login-container {
   background: rgba(0,0,0,0.6);
   border-radius: 12px;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1rem;
   width: 100%;
-  max-width: 360px;
+  max-width: 340px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   color: #fff;
+  margin: 0 auto;
 }
 
 .logo {
   display: block;
   margin: 0 auto 1rem auto;
-  max-width: 120px;
+  max-width: 100px;
+  height: auto;
 }
 
 .login-container h1 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
 .login-container p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin-bottom: 1.5rem;
+  line-height: 1.4;
 }
 
 .btn-masuk {
   background: #dc3545;
   color: #fff;
   border: none;
-  padding: 0.7rem 1.2rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
   width: 100%;
+  min-height: 44px; /* Touch target yang lebih baik */
 }
 .btn-masuk:hover {
   background: #b02a37;
@@ -73,10 +80,10 @@ body.login-page {
 
 /* Sosial Media */
 .social-shortcuts {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 .social-shortcuts p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-bottom: 0.8rem;
 }
 .social-icons {
@@ -90,18 +97,19 @@ body.login-page {
   justify-content: center;
   gap: 0.5rem;
   background: #f4f4f4;
-  padding: 0.6rem;
+  padding: 0.7rem;
   border-radius: 8px;
   text-decoration: none;
   color: #333;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: background 0.3s ease;
+  min-height: 44px; /* Touch target yang lebih baik */
 }
 .social-link:hover {
   background: #e0e0e0;
 }
 .social-link i {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #dc3545;
 }
 
@@ -111,34 +119,42 @@ body.login-page {
   background: linear-gradient(135deg, #111, #222, #1e3c72);
   background-attachment: fixed;
   min-height: 100vh;
+  min-height: 100dvh;
   padding-bottom: 2rem;
   color: #fff;
+  overflow-x: hidden;
 }
 
 header {
   background: #dc3545;
   color: white;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 header h1 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
+  line-height: 1.3;
 }
 .btn-keluar {
   background: #1e3c72;
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1rem;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: background 0.3s ease;
+  min-height: 36px;
+  min-width: 60px;
 }
 .btn-keluar:hover {
   background: #2a5298;
@@ -152,18 +168,20 @@ header h1 {
 .logo-container {
   text-align: center;
   margin: 1rem 0;
+  padding: 0 1rem;
 }
 .logo-dashboard {
-  max-width: 120px;
+  max-width: 100px;
+  height: auto;
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
 }
 
 /* Grid Kalkulator */
 .kalkulator-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
-  padding: 1.5rem 1rem;
+  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -179,7 +197,115 @@ header h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 .kalkulator-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Media Queries untuk Mobile */
+@media (max-width: 480px) {
+  /* Index Page Mobile */
+  body.login-page {
+    padding: 0.5rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+  
+  .login-container {
+    padding: 1.2rem 0.8rem;
+    max-width: 320px;
+  }
+  
+  .logo {
+    max-width: 80px;
+  }
+  
+  .login-container h1 {
+    font-size: 1.3rem;
+  }
+  
+  .login-container p {
+    font-size: 0.85rem;
+  }
+  
+  /* Dashboard Mobile */
+  .dashboard {
+    padding-bottom: 1rem;
+  }
+  
+  header {
+    padding: 0.7rem 0.8rem;
+  }
+  
+  header h1 {
+    font-size: 1.1rem;
+  }
+  
+  .btn-keluar {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .logo-container {
+    margin: 0.8rem 0;
+  }
+  
+  .logo-dashboard {
+    max-width: 80px;
+  }
+  
+  .kalkulator-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+  
+  .kalkulator-card {
+    padding: 1rem;
+    min-height: 100px;
+  }
+}
+
+/* Untuk layar sangat kecil (iPhone SE dll) */
+@media (max-width: 320px) {
+  .login-container {
+    max-width: 300px;
+    padding: 1rem 0.6rem;
+  }
+  
+  .kalkulator-grid {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+  }
+}
+
+/* Touch improvements untuk mobile */
+@media (hover: none) {
+  .btn-masuk:hover,
+  .btn-keluar:hover,
+  .social-link:hover,
+  .kalkulator-card:hover {
+    transform: none;
+  }
+  
+  .kalkulator-card:active {
+    transform: scale(0.98);
+    background: rgba(255,255,255,0.15);
+  }
+}
+
+/* Safe area untuk notch phones */
+@supports(padding: max(0px)) {
+  body.login-page,
+  .dashboard {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+  
+  header {
+    padding-top: max(0.8rem, env(safe-area-inset-top));
+  }
+}
