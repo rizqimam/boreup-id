@@ -1,7 +1,69 @@
+/* RESET & MOBILE FIRST */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* HALAMAN DEPAN */
+.login-page {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: white;
+}
+
+.login-container {
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem 1rem;
+}
+
+/* Judul Responsif */
+.login-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: #00d4ff;
+  font-weight: 700;
+}
+.login-container p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Tombol MASUK */
+.btn-masuk {
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: #00d4ff;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto 2rem;
+  display: block;
+}
+.btn-masuk:hover {
+  background: #00b0d4;
+  transform: scale(1.02);
+}
+
 /* SOCIAL SHORTCUTS */
 .social-shortcuts {
-  margin-top: 3rem;
-  text-align: center;
+  margin-top: 2rem;
 }
 .social-shortcuts p {
   font-size: 0.9rem;
@@ -12,7 +74,8 @@
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
+  flex-wrap: wrap;
 }
 
 .social-link {
@@ -21,21 +84,37 @@
   align-items: center;
   text-decoration: none;
   color: white;
-  font-size: 0.9rem;
-  transition: 0.3s;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+  min-width: 60px;
 }
 
 .social-link i {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 0.3rem;
 }
 
 .social-link:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   opacity: 0.9;
 }
 
-/* Warna khusus per platform */
+/* Warna Brand */
 .social-link:nth-child(1) i { color: #25D366; } /* WA */
 .social-link:nth-child(2) i { color: #1877F2; } /* FB */
 .social-link:nth-child(3) i { color: #E4405F; } /* IG */
+
+/* TABLET & DESKTOP */
+@media (min-width: 480px) {
+  .login-container h1 { font-size: 2.8rem; }
+  .login-container p { font-size: 1.1rem; }
+  .btn-masuk { font-size: 1.2rem; padding: 1.1rem; }
+}
+
+@media (min-width: 768px) {
+  .login-container { padding: 3rem 1rem; }
+  .btn-masuk { max-width: 350px; }
+  .social-icons { gap: 2rem; }
+  .social-link i { font-size: 2.2rem; }
+  .social-link { font-size: 0.95rem; }
+}
