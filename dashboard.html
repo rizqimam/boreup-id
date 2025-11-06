@@ -7,16 +7,33 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dashboard">
+  <!-- Header/Menu -->
   <header>
-    <h1>Kalkulator Mesin</h1>
-    <button onclick="keluar()" class="btn-keluar">KELUAR</button>
+    <h1>Dashboard BoreUp.ID</h1>
+    <button class="btn-keluar" onclick="keluar()">Keluar</button>
   </header>
 
-  <main class="kalkulator-grid" id="kalkulatorList">
-    <!-- Kalkulator akan diisi oleh JS -->
-  </main>
+  <!-- Logo di bawah menu -->
+  <div class="logo-container">
+    <img src="assets/logo.png" alt="Logo BoreUp.ID" class="logo-dashboard" />
+  </div>
 
-  <script src="script.js"></script>
+  <!-- Grid Kalkulator -->
+  <div class="kalkulator-grid">
+    <div class="kalkulator-card">
+      <h3>Kalkulator Bore Up</h3>
+      <p>Hitung kapasitas mesin setelah bore up</p>
+    </div>
+    <div class="kalkulator-card">
+      <h3>Kalkulator Stroke Up</h3>
+      <p>Hitung kapasitas mesin setelah stroke up</p>
+    </div>
+    <div class="kalkulator-card">
+      <h3>Kalkulator Rasio Kompresi</h3>
+      <p>Hitung rasio kompresi mesin</p>
+    </div>
+  </div>
+
   <script>
     function keluar() {
       window.location.href = 'index.html';
