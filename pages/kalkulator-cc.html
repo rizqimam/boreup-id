@@ -27,7 +27,6 @@
 <script>
   const url = "https://script.google.com/macros/s/AKfycbw6H-UXep5LCHO83tXjgk3mZk-7fXDXS8WyU0wEMyaCy4IR025ZYGSqbxllVrUzs_ewug/exec";
 
-  // Ambil data merk dari GSheet via GAppScript
   async function loadMerk() {
     const select = document.getElementById('merk');
     select.innerHTML = "<option>Loading...</option>";
@@ -46,7 +45,6 @@
     }
   }
 
-  // Saat merk dipilih, isi piston dan langkah otomatis
   async function pilihMerk() {
     const merk = document.getElementById('merk').value;
     if (!merk) return;
@@ -66,14 +64,13 @@
     const s = parseFloat(document.getElementById('langkah').value);
 
     if (!d || !s) {
-      document.getElementById('hasil').innerHTML = "Isi semua kolom!";
+      document.getElementById('hasil').innerHTML = "⚠️ Isi semua kolom!";
       return;
     }
 
     const cc = (Math.PI * (d ** 2) * s) / 4 / 1000;
-    document.getElementById('hasil').innerHTML = `Kapasitas mesin: <b>${cc.toFixed(1)} cc</b>`;
+    document.getElementById('hasil').innerHTML = `💡 Kapasitas mesin: <b>${cc.toFixed(1)} cc</b>`;
   }
 
-  // Jalankan otomatis
   loadMerk();
 </script>
