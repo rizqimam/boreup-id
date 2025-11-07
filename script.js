@@ -14,7 +14,7 @@ const kalkulatorList = [
 // Inisialisasi Dashboard
 // ===============================
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('kalkulatorList') || document.querySelector('.kalkulator-grid');
+  const container = document.getElementById('kalkulatorList');
   if (!container) return;
 
   kalkulatorList.forEach(k => {
@@ -33,23 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Fungsi Load Kalkulator Dinamis
 // ===============================
 async function bukaKalkulator(id) {
-  // Cek apakah container sudah ada
-  let container = document.getElementById('kalkulator-container');
-  if (!container) {
-    container = document.createElement('div');
-    container.id = 'kalkulator-container';
-    container.classList.add('kalkulator-wrapper');
-    document.body.appendChild(container);
-  }
-
-  // Tampilkan loading
+  const container = document.getElementById('kalkulator-container');
   container.innerHTML = `
     <div class="loading">
       <p>🔄 Memuat kalkulator ${id.toUpperCase()}...</p>
     </div>
   `;
 
-  // Fetch file kalkulator
   try {
     const res = await fetch(`pages/kalkulator-${id}.html`);
     if (!res.ok) throw new Error('File tidak ditemukan');
