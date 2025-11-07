@@ -1,15 +1,22 @@
-// Daftar kalkulator (bisa ditambah terus)
+// ===============================
+// Daftar Kalkulator BoreUp.ID
+// ===============================
 const kalkulatorList = [
-  { nama: "Bore-Up CC", icon: "Cylinder", id: "boreup" },
-  { nama: "Kompresi Mesin", icon: "Compression", id: "kompresi" },
-  { nama: "Rasio Gigi", icon: "Gear", id: "gigi" },
-  { nama: "Power Estimasi", icon: "Horsepower", id: "power" },
-  { nama: "Klep Calculator", icon: "Valve", id: "klep" },
-  { nama: "Noken As", icon: "Cam", id: "noken" },
+  { nama: "Bore-Up CC", icon: "⚙️", id: "cc" },
+  { nama: "Kompresi Mesin", icon: "🧮", id: "kompresi" },
+  { nama: "Rasio Gigi", icon: "⚡", id: "gigi" },
+  { nama: "Power Estimasi", icon: "🏍️", id: "power" },
+  { nama: "Klep Calculator", icon: "🔩", id: "klep" },
+  { nama: "Noken As", icon: "🔧", id: "noken" },
 ];
 
+// ===============================
+// Inisialisasi Dashboard
+// ===============================
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('kalkulatorList');
+  const container = document.getElementById('kalkulatorList') || document.querySelector('.kalkulator-grid');
+  if (!container) return;
+
   kalkulatorList.forEach(k => {
     const card = document.createElement('div');
     card.className = 'kalkulator-card';
@@ -22,7 +29,46 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function bukaKalkulator(id) {
-  alert(`Membuka: ${id.toUpperCase()} Calculator`);
-  // Nanti di sini akan load konten kalkulator via JS atau iframe
+// ===============================
+// Fungsi Load Kalkulator Dinamis
+// ===============================
+async function bukaKalkulator(id) {
+  // Cek apakah container sudah ada
+  let container = document.getElementById('kalkulator-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'kalkulator-container';
+    container.classList.add('kalkulator-wrapper');
+    document.body.appendChild(container);
+  }
+
+  // Tampilkan loading
+  container.innerHTML = `
+    <div class="loading">
+      <p>🔄 Memuat kalkulator ${id.toUpperCase()}...</p>
+    </div>
+  `;
+
+  // Fetch file kalkulator
+  try {
+    const res = await fetch(`pages/kalkulator-${id}.html`);
+    if (!res.ok) throw new Error('File tidak ditemukan');
+    const html = await res.text();
+    container.innerHTML = html;
+    window.scrollTo({ top: container.offsetTop, behavior: 'smooth' });
+  } catch (error) {
+    container.innerHTML = `
+      <div class="error">
+        ❌ Gagal memuat kalkulator: ${id.toUpperCase()}<br>
+        (${error.message})
+      </div>
+    `;
+  }
+}
+
+// ===============================
+// Tombol Keluar
+// ===============================
+function keluar() {
+  window.location.href = 'index.html';
 }
