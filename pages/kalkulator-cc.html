@@ -1,0 +1,79 @@
+<div class="kalkulator-container calc-wrapper">
+  <h2>Kalkulator Bore-Up / CC</h2>
+  <div id="form-cc">
+    <div class="form-group">
+      <label for="merk">Pilih Merk Motor:</label>
+      <select id="merk" onchange="pilihMerk()">
+        <option value="">Loading...</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="piston">Diameter Piston (mm):</label>
+      <input type="number" id="piston" step="0.01" />
+    </div>
+
+    <div class="form-group">
+      <label for="langkah">Langkah / Stroke (mm):</label>
+      <input type="number" id="langkah" step="0.01" />
+    </div>
+
+    <button id="hitung" onclick="hitungCC()">Hitung CC</button>
+
+    <div id="hasil"></div>
+  </div>
+</div>
+
+<script>
+  const url = "https://script.google.com/macros/s/AKfycbw6H-UXep5LCHO83tXjgk3mZk-7fXDXS8WyU0wEMyaCy4IR025ZYGSqbxllVrUzs_ewug/exec";
+
+  // Ambil data merk dari GSheet via GAppScript
+  async function loadMerk() {
+    const select = document.getElementById('merk');
+    select.innerHTML = "<option>Loading...</option>";
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      select.innerHTML = '<option value="">Pilih Merk</option>';
+      data.forEach(row => {
+        const opt = document.createElement('option');
+        opt.value = row.MERK;
+        opt.textContent = row.MERK;
+        select.appendChild(opt);
+      });
+    } catch (err) {
+      select.innerHTML = "<option>Error mengambil data</option>";
+    }
+  }
+
+  // Saat merk dipilih, isi piston dan langkah otomatis
+  async function pilihMerk() {
+    const merk = document.getElementById('merk').value;
+    if (!merk) return;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    const item = data.find(r => r.MERK === merk);
+
+    if (item) {
+      document.getElementById('piston').value = item.PISTON;
+      document.getElementById('langkah').value = item.LANGKAH;
+    }
+  }
+
+  function hitungCC() {
+    const d = parseFloat(document.getElementById('piston').value);
+    const s = parseFloat(document.getElementById('langkah').value);
+
+    if (!d || !s) {
+      document.getElementById('hasil').innerHTML = "Isi semua kolom!";
+      return;
+    }
+
+    const cc = (Math.PI * (d ** 2) * s) / 4 / 1000;
+    document.getElementById('hasil').innerHTML = `Kapasitas mesin: <b>${cc.toFixed(1)} cc</b>`;
+  }
+
+  // Jalankan otomatis
+  loadMerk();
+</script>
